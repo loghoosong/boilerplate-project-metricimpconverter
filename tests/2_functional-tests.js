@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 suite('Functional Tests', function () {
     this.timeout(5000);
     // #1
-    it('转换一个有效的输入', function (done) {
+    test('转换一个有效的输入', function (done) {
         chai.request(server).get('/api/convert?input=10L')
             .end((err, res) => {
                 assert.equal(res.status, 200);
@@ -23,7 +23,7 @@ suite('Functional Tests', function () {
             });
     });
     // #2
-    it('转换一个无效的单位', function (done) {
+    test('转换一个无效的单位', function (done) {
         chai.request(server)
             .get('/api/convert').query({ input: '32g' })
             .end((err, res) => {
@@ -33,7 +33,7 @@ suite('Functional Tests', function () {
             });
     });
     // #3
-    it('转换一个无效的数字', function (done) {
+    test('转换一个无效的数字', function (done) {
         chai.request(server)
             .get('/api/convert').query({ input: '3/7.2/4kg' })
             .end((err, res) => {
@@ -43,7 +43,7 @@ suite('Functional Tests', function () {
             });
     });
     // #4
-    it('转换一个无效的数字和单位', function (done) {
+    test('转换一个无效的数字和单位', function (done) {
         chai.request(server)
             .get('/api/convert').query({ input: '3/7.2/4kilomegagram' })
             .end((err, res) => {
@@ -53,7 +53,7 @@ suite('Functional Tests', function () {
             });
     });
     // #5
-    it('转换时没有数字', function (done) {
+    test('转换时没有数字', function (done) {
         chai.request(server)
             .get('/api/convert?').query({ input: 'mi' })
             .end((err, res) => {
